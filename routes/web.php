@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 //Webshop
 Route::controller(WebshopController::class)->group(function(){
-    Route::get('/payment', 'createPayment')->name('/payment');
+    Route::post('/payment', 'createPayment')->name('payment');
     Route::get('/payment/return', 'catchReturn')->name('payment.return');
     Route::post('/payment/webhook', 'mollieWebhook')->name('payment.webhook');
 });
