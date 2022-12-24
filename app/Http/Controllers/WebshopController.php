@@ -65,9 +65,7 @@ class WebshopController extends Controller
     {
         //
         $payment = $this->mollie->payments->get($request->id);
-
-        Log::debug('Payment status for payment ID ' . $payment->id . ': ' . $payment->status);
-
+        
         try {
             $provider = new PaymentProvider();
             $status = $provider->checkPaymentStatus($payment);
