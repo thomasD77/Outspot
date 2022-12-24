@@ -30,13 +30,13 @@
                         <a href="index.html">
                             <i class="fa-2x fa fa-basket-shopping text-dark"></i>
                         </a>
-                        <h1 class="h3 fw-bold mt-3 mb-2">Welcome to my POC</h1>
-                        <h2 class="fs-base fw-medium text-muted mb-0">Let's get started, it will only take a few seconds!</h2>
+                        <h1 class="h3 fw-bold mt-3 mb-2">Thank you for the order!</h1>
+                        <h2 class="fs-base fw-medium text-muted mb-0"></h2>
                     </div>
                     <!-- END Header -->
 
 
-                    <form class="js-validation-installation" action="{{ route('pay') }}" method="POST">
+                    <form class="js-validation-installation" action="{{ route('payment') }}" method="POST">
                         @csrf
                         <!-- Outspot section -->
                         <div class="block block-rounded">
@@ -47,22 +47,24 @@
                                 <div class="row items-push">
                                     <div class="col-lg-4">
                                         <p class="fs-sm text-muted">
-                                            Please pay with a amount between 10 and 100EUR.
+                                            Please check your order details here.
                                         </p>
                                     </div>
                                     <div class="col-lg-6 offset-lg-1">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="amount">Amount</label>
-                                            <input type="number"
-                                                   min="10"
-                                                   max="100"
-                                                   class="form-control form-control-lg"
-                                                   id="amount"
-                                                   name="amount"
-                                                   placeholder="Enter amount here...">
-                                            <div class="d-flex justify-content-end">
-                                                <button class="btn btn-dark mt-2" type="submit">Pay</button>
-                                            </div>
+                                        <div class="mb-4 d-flex flex-column">
+                                            @if($order)
+                                                <label class="form-label" for="amount"><strong>Amount:</strong> &euro; {{ number_format( $order->amount / 100, 2, '.', '') }}</label>
+                                                <label class="form-label" for="amount"><strong>Status:</strong></label>
+                                                <div>
+                                                    @if($order->payment_status == 'PAID')
+                                                        <p class="badge badge-pill bg-success p-2">PAID</p>
+                                                    @elseif($order->payment_status == 'CANCELED')
+                                                        <p class="badge badge-pill bg-danger p-2">CANCELLED</p>
+                                                    @else
+                                                        <p class="badge badge-pill bg-warning p-2">PENDING</p>
+                                                    @endif
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

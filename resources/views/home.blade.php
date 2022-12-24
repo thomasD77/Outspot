@@ -35,8 +35,7 @@
                     </div>
                     <!-- END Header -->
 
-
-                    <form class="js-validation-installation" action="{{ route('pay') }}" method="POST">
+                    <form class="js-validation-installation" action="{{ route('payment') }}" method="POST">
                         @csrf
                         <!-- Outspot section -->
                         <div class="block block-rounded">
@@ -60,6 +59,9 @@
                                                    id="amount"
                                                    name="amount"
                                                    placeholder="Enter amount here...">
+                                                    @error('amount')
+                                                        <p class="text-danger mt-2"> {{ $message }}</p>
+                                                    @enderror
                                             <div class="d-flex justify-content-end">
                                                 <button class="btn btn-dark mt-2" type="submit">Pay</button>
                                             </div>
