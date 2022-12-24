@@ -36,8 +36,7 @@ class WebshopController extends Controller
             ],
             "description" => "Webshop betaling",
             "redirectUrl" => route('payment.return'),
-//            "webhookUrl"  => route('payment.webhook'),
-            "webhookUrl"  => 'https://79ba-2a02-1811-c426-b400-a4a4-c450-82e-da64.eu.ngrok.io/payment/webhook',
+            "webhookUrl"  => route('payment.webhook'),
             "metadata" => [
                 "order_id" => $order->id
             ],
