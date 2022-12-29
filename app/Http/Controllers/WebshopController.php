@@ -8,13 +8,15 @@ use App\Models\PaymentProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
+use Mollie\Api\Exceptions\ApiException;
+use Mollie\Api\MollieApiClient;
 
 class WebshopController extends Controller
 {
     //
     protected $mollie;
 
-    function __construct(\Mollie\Api\MollieApiClient $mollie)
+    function __construct(MollieApiClient $mollie)
     {
         $mollie->setApiKey(config('mollie.MOLLIE_TEST_API_KEY'));
         $this->mollie = $mollie;
@@ -73,7 +75,7 @@ class WebshopController extends Controller
             //Conformation from app to Mollie the connection was successful
             return 'TRUE';
 
-        } catch (\Mollie\Api\Exceptions\ApiException $e){
+        } catch (ApiException $e){
             Log::error("API call failed: " . htmlspecialchars($e->getMessage()));
         }
     }

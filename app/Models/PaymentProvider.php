@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\OrderState;
 use Illuminate\Support\Facades\Log;
 
 class PaymentProvider
@@ -22,19 +23,19 @@ class PaymentProvider
 
         Log::debug('Payment status for payment ID ' . $payment->id . ': ' . $payment->status);
 
-        if ($payment->isPaid() && !$payment->hasRefunds() && !$payment->hasChargebacks()) {
-            $order->payment_status = 'PAID';
+        if ($payment->isPaid()) {
+            $order->payment_status = OrderState::Paid->value;
 
             //Here you can send out mails to people in the company and clients
 //                Mail::to('admin@outspot.be')->send(new OrderMail());
 
         } elseif ( $payment->isCanceled() ) {
-            $order->payment_status = 'CANCELED';
+            $order->payment_status = OrderState::Canceled->value;
 
         } else {
-            $order->payment_status = 'PENDING';
+            $order->payment_status = OrderState::Pending->value;
         }
 
-        $order->save();
+        $order->update();
     }
 }
