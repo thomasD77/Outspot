@@ -34,7 +34,7 @@ class WebshopController extends Controller
                 "currency" => "EUR",
                 "value" => number_format($order->amount / 100, 2, '.', '')
             ],
-            "description" => "Webshop betaling",
+            "description" => "Webshop payment",
             "redirectUrl" => route('payment.return'),
             "webhookUrl"  => route('payment.webhook'),
             "metadata" => [

@@ -30,7 +30,7 @@
                         <a href="index.html">
                             <i class="fa-2x fa fa-basket-shopping text-dark"></i>
                         </a>
-                        <h1 class="h3 fw-bold mt-3 mb-2">Thank you for the order!</h1>
+                        <h1 class="h3 fw-bold mt-3 mb-2">{{ __('Thank you for the order!') }}</h1>
                         <h2 class="fs-base fw-medium text-muted mb-0"></h2>
                     </div>
                     <!-- END Header -->
@@ -41,20 +41,20 @@
                         <!-- Outspot section -->
                         <div class="block block-rounded">
                             <div class="block-header block-header-default">
-                                <h3 class="block-title">Outspot</h3>
+                                <h3 class="block-title">{{ __('Outspot') }}</h3>
                             </div>
                             <div class="block-content">
                                 <div class="row items-push">
                                     <div class="col-lg-4">
                                         <p class="fs-sm text-muted">
-                                            Please check your order details here.
+                                            {{ __('Please check your order details here.') }}
                                         </p>
                                     </div>
                                     <div class="col-lg-6 offset-lg-1">
                                         <div class="mb-4 d-flex flex-column">
                                             @if($order)
-                                                <label class="form-label" for="amount"><strong>Amount:</strong> &euro; {{ number_format( $order->amount / 100, 2, '.', '') }}</label>
-                                                <label class="form-label" for="amount"><strong>Status:</strong></label>
+                                                <label class="form-label" for="amount"><strong>{{ __('Amount:') }}</strong> &euro; {{ number_format( $order->amount / 100, 2, '.', '') }}</label>
+                                                <label class="form-label" for="amount"><strong>{{ __('Status:') }}</strong></label>
                                                 <div>
                                                     @if($order->payment_status == 'PAID')
                                                         <p class="badge badge-pill bg-success p-2">PAID</p>

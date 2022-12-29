@@ -9,14 +9,14 @@ class PaymentProvider
     public function checkPaymentStatus($payment)
     {
         if(!$payment){
-            Log::error("Er werd geen betaling gevonden met een order ID zoals uit Mollie." );
+            Log::error("There was no payment found in Mollie" );
             return 'payment fail';
         }
 
         $order = Order::findOrFail($payment->metadata->order_id);
 
         if(!$order){
-            Log::error("Er werd geen bestelling gevonden met een ID zoals uit Mollie." );
+            Log::error("There was no order found" );
             return 'order fail';
         }
 
