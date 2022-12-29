@@ -25,7 +25,7 @@ class OrderRequest extends FormRequest
     {
         return [
             //
-            'amount' => 'required|integer|min:10|max:100'
+            'amount' => 'required|numeric|between:10,100'
         ];
     }
 }

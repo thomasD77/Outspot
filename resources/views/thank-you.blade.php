@@ -53,7 +53,7 @@
                                     <div class="col-lg-6 offset-lg-1">
                                         <div class="mb-4 d-flex flex-column">
                                             @if($order)
-                                                <label class="form-label" for="amount"><strong>{{ __('Amount:') }}</strong> &euro; {{ number_format( $order->amount / 100, 2, '.', '') }}</label>
+                                                <label class="form-label" for="amount"><strong>{{ __('Amount:') }}</strong> &euro; {{ number_format( $order->amount, 2, '.', '') }}</label>
                                                 <label class="form-label" for="amount"><strong>{{ __('Status:') }}</strong></label>
                                                 <div>
                                                     @if($order->payment_status == 'PAID')

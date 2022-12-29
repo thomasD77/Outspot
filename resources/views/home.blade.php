@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-lg-6 offset-lg-1">
                                         <div class="mb-4">
-                                            <label class="form-label" for="amount">Amount</label>
+                                            <label class="form-label" for="amount">{{ __('Amount') }}</label>
                                             <input type="number"
                                                    min="10"
                                                    max="100"

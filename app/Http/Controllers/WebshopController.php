@@ -24,7 +24,7 @@ class WebshopController extends Controller
     {
         //
         $order = new Order();
-        $order->amount = $request->amount * 100;
+        $order->amount = $request->amount;
         $order->save();
 
         Session::put('my-order', $order);
@@ -32,7 +32,7 @@ class WebshopController extends Controller
         $payment = $this->mollie->payments->create([
             "amount" => [
                 "currency" => "EUR",
-                "value" => number_format($order->amount / 100, 2, '.', '')
+                "value" => number_format($order->amount , 2, '.', '')
             ],
             "description" => "Webshop payment",
             "redirectUrl" => route('payment.return'),
@@ -65,7 +65,7 @@ class WebshopController extends Controller
     {
         //
         $payment = $this->mollie->payments->get($request->id);
-        
+
         try {
             $provider = new PaymentProvider();
             $status = $provider->checkPaymentStatus($payment);
