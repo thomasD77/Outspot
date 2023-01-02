@@ -24,16 +24,16 @@ class PaymentProvider
         Log::debug('Payment status for payment ID ' . $payment->id . ': ' . $payment->status);
 
         if ($payment->isPaid()) {
-            $order->payment_status = OrderState::Paid->value;
+            $order->payment_status = OrderState::Paid;
 
             //Here you can send out mails to people in the company and clients
 //                Mail::to('admin@outspot.be')->send(new OrderMail());
 
         } elseif ( $payment->isCanceled() ) {
-            $order->payment_status = OrderState::Canceled->value;
+            $order->payment_status = OrderState::Canceled;
 
         } else {
-            $order->payment_status = OrderState::Pending->value;
+            $order->payment_status = OrderState::Pending;
         }
 
         $order->update();
