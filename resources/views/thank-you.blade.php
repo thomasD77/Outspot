@@ -57,11 +57,11 @@
                                                 <label class="form-label" for="amount"><strong>{{ __('Status:') }}</strong></label>
                                                 <div>
                                                     @if($order->payment_status == \App\Enums\OrderState::Paid)
-                                                        <p class="badge badge-pill bg-success p-2">PAID</p>
+                                                        <p class="badge badge-pill bg-success p-2">{{ __('PAID') }}</p>
                                                     @elseif($order->payment_status == \App\Enums\OrderState::Canceled)
-                                                        <p class="badge badge-pill bg-danger p-2">CANCELLED</p>
+                                                        <p class="badge badge-pill bg-danger p-2">{{ __('CANCELED') }}</p>
                                                     @else
-                                                        <p class="badge badge-pill bg-warning p-2">PENDING</p>
+                                                        <p class="badge badge-pill bg-warning p-2">{{ __('PENDING') }}</p>
                                                     @endif
                                                 </div>
                                             @endif
